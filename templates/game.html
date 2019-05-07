@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - {{ game.name }}</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+<h1>Quiz Royale</h1>
+<h2>{{ game.name }}</h2>
+<hr>
+{% for question in game.questions %}
+<b>{{ question.question }}</b>
+<ul>
+    {% for answer in question.answers %}
+    <li>{{ answer }}</li>
+    {% endfor %}
+</ul>
+Correct Choice: {% if question.correct == "choice1" %} Choice 1 {% elif question.correct == "choice2" %} Choice 2 {% elif question.correct == "choice3" %} Choice 3 {% else %} Choice 4 {% endif %}
+<form action="/editquestion" method="post">
+    <input type="submit" value="Edit Question">
+    <input type="hidden" value="{{ loop.index }}" name="id">
+    <input type="hidden" value="{{ game.id }}" name="game">
+</form>
+{% if game.questions|length > 1 %}
+<form action="/deletequestion" method="post">
+    <input type="submit" value="Delete Question">
+    <input type="hidden" value="{{ loop.index }}" name="id">
+    <input type="hidden" value="{{ game.id }}" name="game">
+</form>
+{% endif %}
+<hr>
+{% endfor %}
+<form action="/newquestion" method="post">
+    <input type="submit" value="New Question">
+    <input type="hidden" value="{{ game.id }}" name="game">
+</form>
+<form action="/home" method="get">
+    <input type="submit" value="Return To Home">
+</form>
+</body>
+</html>

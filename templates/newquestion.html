@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - New Question</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+<h1>Quiz Royale</h1>
+<h2>New Question</h2>
+<form action="/runnewquestion" method="post">
+    Question: <input type="text" name="question" class="question" value="{{ question }}"><br/>
+    Choice 1: <input type="text" name="choice1"><br/>
+    Choice 2: <input type="text" name="choice2"><br/>
+    Choice 3: <input type="text" name="choice3"><br/>
+    Choice 4: <input type="text" name="choice4"><br/>
+    Correct Answer: <select name="correct">
+    <option value="choice1">Choice 1</option>
+    <option value="choice2">Choice 2</option>
+    <option value="choice3">Choice 3</option>
+    <option value="choice4">Choice 4</option>
+</select><br/>
+    <input type="submit" value="Create New Question">
+    <input type="hidden" value="{{ gameid }}" name="gameid">
+</form>
+<form action="/home" method="get">
+    <input type="submit" value="Return To Home">
+</form>
+</body>
+</html>

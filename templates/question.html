@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - Play</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+<p align="right">${{ useruser.upgrades[2] }}</p>
+<h1 align="center">{{ questionquestion }}</h1>
+<form action="/answer" method="post">
+    <button type="submit" value="choice1" name="choice" class="choice" style="float: left;"><span class="buttontext">{{ choice1 }}</span></button><button type="submit" value="choice2" name="choice" class="choice" style="float: right;"><span class="buttontext">{{ choice2 }}</span></button><br/>
+    <button type="submit" value="choice3" name="choice" style="float: left;" class="choice"><span class="buttontext">{{ choice3 }}</span></button><button type="submit" value="choice4" name="choice" style="float: right;" class="choice"><span class="buttontext">{{ choice4 }}</span></button>
+    <input type="hidden" value="{{ game }}" name="game">
+    <input type="hidden" value="{{ user }}" name="user">
+    <input type="hidden" value="{{ question }}" name="questionnumber">
+    <input type="hidden" value="{{ url }}" name="url">
+    <input type="hidden" value="{{ gamekey }}" name="gamekey">
+</form>
+<form action="/home" method="get">
+    <input type="submit" value="Quit Game">
+</form>
+<p>{{ message }}</p>
+</body>
+</html>

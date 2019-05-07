@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - {{ user.username }}'s Games</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+<h1>Quiz Royale</h1>
+<h2>Games</h2>
+<hr>
+{% if signedin %}
+{% for game in user.games %}
+<h3>{{ games[game].name }}</h3>
+<form action="/open" method="post">
+    <input type="submit" value="Edit Game">
+    <input type="hidden" name="gameid" value="{{ games[game].id }}">
+</form>
+<form action="/delete" method="post">
+    <input type="submit" value="Delete Game">
+    <input type="hidden" name="gameid" value="{{ games[game].id }}">
+    <input type="hidden" name="user" value="{{ user }}">
+</form>
+<form action="/gotohost" method="post">
+    <input type="submit" value="Host Game">
+    <input type="hidden" name="gameid" value="{{ games[game].id }}">
+</form>
+<form action="/rename" method="post">
+    <input type="text" name="name">
+    <input type="submit" value="Rename Game">
+    <input type="hidden" value="{{ games[game].id }}" name="gameid">
+</form>
+<hr>
+{% endfor %}
+{% endif %}
+<form action="/newgame" method="post">
+    <input type="submit" value="New Game">
+</form>
+<form action="/home" method="get">
+    <input type="submit" value="Return To Home">
+</form>
+</body>
+</html>

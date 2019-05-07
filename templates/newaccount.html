@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - New Account</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+<h1>Quiz Royale</h1>
+<h2>New Account</h2>
+<form action="/newaccount" method="post">
+    Username: <input type="text" name="username"><br/>
+    Password: <input type="password" name="password"><br/>
+    <input type="submit" value="Create Account and Sign In">
+</form>
+<form action="/home" method="get">
+    <input type="submit" value="Return To Home">
+</form>
+<p>{{ message }}</p>
+</body>
+</html>

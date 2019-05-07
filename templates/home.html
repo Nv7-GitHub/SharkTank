@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - Home</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+{% if signedin %}<form action="/games" method="get">
+    <input type="submit" value="Go To Games">
+</form>
+<form action="/logout" method="post">
+    <input type="submit" value="Log Out">
+</form><p align="right">{{ username }}</p>{% else %}
+<form method="post" action="/gotologin">
+    <input type="submit" value="Log In">
+</form>
+<form method="post" action="/gotonewaccount">
+    <input type="submit" value="New Account">
+</form>
+{% endif %}
+<h1 align="center">Quiz Royale</h1>
+<form method="post" action="/join">
+    <p align="center">Code: <input type="text" name="code"></p>
+    <p align="center">Username: <input type="text" name="name"></p>
+    <p align="center"><input type="submit" value="Join!"></p>
+    <p align="center">{{ message }}</p>
+</form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - Results</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+<h1 align="center">Quiz Royale</h1>
+<h2 align="center">Results</h2>
+{% if not one == "" %}<p align="center"> First place: {{ one.name }} - ${{ one.upgrades[2] }}</p>{% endif %}
+{% if not two == "" %}<p align="center">Second Place: {{ two.name }} - {{ two.upgrades[2] }}</p>{% endif %}
+{% if not three == "" %}<p align="center">Third Place: {{ three.name }} - {{ three.upgrades[2] }}</p>{% endif %}
+<form action="/home" method="get">
+    <p align="center"><input type="submit" value="Return To Home"></p>
+</form>
+<p>{{ message }}</p>
+</body>
+</html>

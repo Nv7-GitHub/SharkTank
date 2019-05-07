@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - Upgrade</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+<p align="right">${{ player.upgrades[2] }}</p>
+<h1>Quiz Royale</h1>
+<h2>Upgrade</h2>
+<!-- Dollars Per Question -->
+<b>Dollars Per Question: ${{ player.upgrades[0] }}</b>
+{% if (not (player.upgrades[0] + player.upgrades[1]) + 1 > player.points) and (not player.upgrades[2] - ((player.upgrades[0] ** 2) * 3) < 0) %}
+<form action="/upgradevalue" method="post">
+    <input type="submit" value="Upgrade Dollars Per Question for ${{ (player.upgrades[0] ** 2) * 3 }}">
+    <input type="hidden" name="item" value="0">
+    <input type="hidden" name="user" value="{{ user }}">
+    <input type="hidden" name="hostedindex" value="{{ hostedindex }}">
+    <input type="hidden" value="{{ url }}" name="url">
+</form>
+{% elif player.upgrades[2] - ((player.upgrades[0] ** 2) * 3) < 0 %}
+<p>Earn ${{ (player.upgrades[0] ** 2) * 3 }} to upgrade dollars per question!</p>
+{% else %}
+<p>You can not upgrade anymore, you finished your upgrade points! If you still want to upgrade, ask the host to put more upgrade points next time...</p>
+{% endif %}
+<!-- Multiplier -->
+<b>Multiplier: {{ player.upgrades[1] }}x</b>
+{% if (not (player.upgrades[0] + player.upgrades[1]) + 1 > player.points) and (not player.upgrades[2] - ((player.upgrades[1] ** 2) * 3) < 0) %}
+<form action="/upgradevalue" method="post">
+    <input type="submit" value="Upgrade Multiplier for ${{ (player.upgrades[1] ** 2) * 3 }}">
+    <input type="hidden" name="item" value="1">
+    <input type="hidden" name="user" value="{{ user }}">
+    <input type="hidden" name="hostedindex" value="{{ hostedindex }}">
+    <input type="hidden" value="{{ url }}" name="url">
+</form>
+{% elif player.upgrades[2] - ((player.upgrades[0] ** 2) * 3) < 0 %}
+<p>Earn ${{ (player.upgrades[1] ** 2) * 3 }} to upgrade multiplier!</p>
+{% else %}
+<p>You can not upgrade anymore, you finished your upgrade points! If you still want to upgrade, ask the host to put more upgrade points next time...</p>
+{% endif %}
+<!-- Other Buttons -->
+<form action="{{ url }}" method="post">
+    <input type="submit" value="Next Question">
+</form>
+<form action="/home" method="get">
+    <input type="submit" value="Quit Game">
+</form>
+<p>{{ message }}</p>
+</body>
+</html>

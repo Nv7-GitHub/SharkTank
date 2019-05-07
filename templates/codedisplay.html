@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - Game Code</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+<script>
+setTimeout(function(){
+   window.location.reload(1);
+}, 1000);
+</script>
+<p align="right">{{ timer }}</p>
+<h1 align="center">Quiz Royale</h1>
+<h2 align="center">{{ game.code }}</h2>
+{% for user in game.players %}
+<p align="center">{{ user.name }} - ${{ user.upgrades[2] }}</p>
+{% endfor %}
+<form action="/home" method="get">
+    <p align="center"><input type="submit" value="Return To Home"></p>
+</form>
+<p>{{ message }}</p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Royale - Play</title>
+    <link rel="icon" href="{{ url_for('static',filename='Favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
+</head>
+<body>
+<p align="right">${{ useruser.upgrades[2] }}</p>
+{% if correct %}
+<h1>Correct! 👍👍👍</h1>
+{% else %}
+<h1>Wrong... Better luck next time!</h1>
+{% if hosted[hostedindex].mode == "learning" %}
+<p>The correct answer was {{ answer }}.</p>
+{% endif %}
+{% endif %}
+<form action="{{ url }}" method="post">
+    <input type="submit" value="Next Question">
+</form>
+<form action="/upgrade?hostedindex={{ hostedindex }}&user={{ user }}&game={{ game }}" method="post">
+    <input type="submit" value="Upgrade">
+</form>
+<form action="/home" method="get">
+    <input type="submit" value="Return To Home">
+</form>
+<p>{{ message }}</p>
+</body>
+</html>
